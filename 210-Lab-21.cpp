@@ -25,15 +25,32 @@ class Goat {
         name = names [rand () % NAMES_SIZE];
         color = color[rand() % COLORS_SIZE];
         
+        
+
+        Goat (int age, string name, string color)
+        {
+            this -> age = age;
+            this -> name = name;
+            this -> color = color;
+        }
+
+        int getAge() const {return age; }
+        string getname() const {return name; }
+        string getColor() const {return color;}
+
+        string Goat::names[NAMES_SIZE] = {"Senior", "Godlike", "Old", "Mature", "Teen", "Kid", "Hero", "Brave", "Happy", "Clever", "Strong", "Graceful", "Mighty", "Friendly", "Cheerful"};
+        string Goat::colors[COLORS_SIZE] = {"Yellow", "Red", "Gold", "Mauve", "White", "Blue", "Green", "Orange", "Purple", "Pink", "Gray", "Black", "Brown", "Silver", "Cyan"};
+
+
     }
 }
 class DoublyLinkedList {
 private:
 struct Node {
-int data;
+Goat data;
 Node* prev;
 Node* next;
-Node(int val, Node* p = nullptr, Node* n = nullptr) {
+Node(Goat val, Node* p = nullptr, Node* n = nullptr) {
 data = val;
 prev = p;
 next = n;
@@ -44,7 +61,7 @@ Node* tail;
 public:
 // constructor
 DoublyLinkedList() { head = nullptr; tail = nullptr; }
-void push_back(int value) {
+void push_back(Goat value) {
 Node* newNode = new Node(value);
 if (!tail) // if there's no tail, the list is empty
 head = tail = newNode;
@@ -54,7 +71,7 @@ newNode->prev = tail;
 tail = newNode;
 }
 }
-void push_front(int value) {
+void push_front(Goat value) {
 Node* newNode = new Node(value);
 if (!head) // if there's no head, the list is empty
 head = tail = newNode;
