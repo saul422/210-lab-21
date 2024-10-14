@@ -23,11 +23,11 @@ class Goat {
     Goat() {
         age = rand () % (MAX_AGE + 1 ) + MIN_AGE;
         name = names [rand () % NAMES_SIZE];
-        color = color[rand() % COLORS_SIZE];
+        color = colors[rand() % COLORS_SIZE];
         
         
 
-        Goat (int age, string name, string color)
+        Goat (int age, string name, string color) {
         {
             this -> age = age;
             this -> name = name;
@@ -35,7 +35,7 @@ class Goat {
         }
 
         int getAge() const {return age; }
-        string getname() const {return name; }
+        string getName() const {return name; }
         string getColor() const {return color;}
 
         string Goat::names[NAMES_SIZE] = {"Senior", "Godlike", "Old", "Mature", "Teen", "Kid", "Hero", "Brave", "Happy", "Clever", "Strong", "Graceful", "Mighty", "Friendly", "Cheerful"};
@@ -61,6 +61,15 @@ Node* tail;
 public:
 // constructor
 DoublyLinkedList() { head = nullptr; tail = nullptr; }
+
+~DoublyLinkedList() {
+    while (head) {
+        Node* temp = head;
+        head = head -> next; 
+        delete temp;
+    }
+}
+
 void push_back(Goat value) {
 Node* newNode = new Node(value);
 if (!tail) // if there's no tail, the list is empty
@@ -71,6 +80,8 @@ newNode->prev = tail;
 tail = newNode;
 }
 }
+
+
 void push_front(Goat value) {
 Node* newNode = new Node(value);
 if (!head) // if there's no head, the list is empty
@@ -81,7 +92,7 @@ head->prev = newNode;
 head = newNode;
 }
 }
-void insert_after(int value, int position) {
+void insert_after(Goat value, int position) {
 if (position < 0) {
 cout << "Position must be >= 0." << endl;
 return;
@@ -107,7 +118,7 @@ else
 tail = newNode; // Inserting at the end
 temp->next = newNode;
 }
-void delete_node(int value) {
+void delete_node(Goat value) {
 if (!head) return; // Empty list
 Node* temp = head;
 while (temp && temp->data != value)
@@ -134,11 +145,14 @@ current = current->next;
 }
 cout << endl;
 }
+
+
 void print_reverse() {
 Node* current = tail;
 if (!current) return;
 while (current) {
-cout << current->data << " ";
+cout << current->data.getName() << " (" << current->data.getColor() << ", " << current->data.getAge() << ")" << endl;
+
 current = current->prev;
 }
 cout << endl;
@@ -153,17 +167,19 @@ delete temp;
 };
 // Driver program
 int main() {
-DoublyLinkedList list;
+
+    srand(time(0));
+DoublyLinkedList goatHerd;
 int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
 for (int i = 0; i < size; ++i)
-list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
+goatHerd.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
 cout << "List forward: ";
-list.print();
+goatHerd.print();
 cout << "List backward: ";
-list.print_reverse();
+goatHerd.print_reverse();
 cout << "Deleting list, then trying to print.\n";
-list.~DoublyLinkedList();
+goatHerd.~DoublyLinkedList();
 cout << "List forward: ";
-list.print();
+goatHerd.print();
 return 0;
 }
