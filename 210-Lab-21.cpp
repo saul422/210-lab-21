@@ -1,7 +1,12 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+
 using namespace std;
+
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
-const int NAME_SIZE = 15, COLORS_SIZE = 15;
+const int MIN_AGE = 1, MAX_AGE = 20;
+const int NAMES_SIZE = 15, COLORS_SIZE = 15;
 
 
 
@@ -11,8 +16,16 @@ class Goat {
     int age;
     string name;
     string color;
-    static string names[NAME_SIZE];
+    static string names[NAMES_SIZE];
     static string colors[COLORS_SIZE];
+
+    public:
+    Goat() {
+        age = rand () % (MAX_AGE + 1 ) + MIN_AGE;
+        name = names [rand () % NAMES_SIZE];
+        color = color[rand() % COLORS_SIZE];
+        
+    }
 }
 class DoublyLinkedList {
 private:
