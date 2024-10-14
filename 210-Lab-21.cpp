@@ -1,11 +1,19 @@
 #include <iostream>
 using namespace std;
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+const int NAME_SIZE = 15, COLORS_SIZE = 15;
 
 
 
 
-
+class Goat {
+    private:
+    int age;
+    string name;
+    string color;
+    static string names[NAME_SIZE];
+    static string colors[COLORS_SIZE];
+}
 class DoublyLinkedList {
 private:
 struct Node {
